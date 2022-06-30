@@ -1,10 +1,12 @@
 const express = require("express")
-
+const User = require("../models/user")
 const router = express.Router()
 
 router.post("/login", async (req, res, next) => {
     try {
         //take user email and password and authenticate
+        const user = await User.login(req.body)
+        return res.status(200).json({ user })
         
     }
     catch (err)
@@ -16,6 +18,8 @@ router.post("/login", async (req, res, next) => {
 router.post("/register", async (req, res, next) => {
     try {
         //Take user email and others to create new account
+        const user = await User.register(req.body)
+        return res.status (201).json({user})
         
     }
     catch (err)
@@ -23,3 +27,5 @@ router.post("/register", async (req, res, next) => {
         next(err)
     }
 })
+
+module.exports = router
