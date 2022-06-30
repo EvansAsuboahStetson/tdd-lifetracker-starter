@@ -1,4 +1,8 @@
 const db = require("../db")
+const { BCRYPT_WORK_FACTOR } = require("../config");
+
+const bcrypt = require("bcrypt")
+
 
 
 const {BadRequestError, UnauthorisedError } = require('../utils/errors')
@@ -34,7 +38,7 @@ class User {
     }
 
     //if one does. throw an error
-    //take users password and hash it
+   const hashedPassword = await bcrypt.hash(credentials.password,BCRYPT_WORK_FACTOR)
     //takke user email and lowecase it
     const existingUser = await User.fetchUserByEmail(credentials.email)
     if (existingUser)
@@ -56,7 +60,7 @@ class User {
     VALUES ($1,$2,$3,$4,$5)
     RETURNING id,username, password,first_name,last_name,email, created_at,updated_at
     `,
-      [credentials.username,credentials.password,credentials.first_name,credentials.last_name,lowecaseEmail]
+      [credentials.username,hashedPassword,credentials.first_name,credentials.last_name,lowecaseEmail]
     )
     const user = result.rows[0]
     return user
