@@ -8,6 +8,8 @@ const morgan = require("morgan")
 const { PORT } = require("./config")
 
 const authRoutes = require("./routes/auth")
+const nutritionRoutes = require("./routes/nutrition")
+
 
 //Setting up Not Found Error
 const {BadRequestError,NotFoundError} = require("./utils/errors")
@@ -21,7 +23,9 @@ app.use(express.json())
 
 app.use(morgan("tiny"))
 
-app.use("/auth",authRoutes)
+app.use("/auth", authRoutes)
+app.use("/nutrition", nutritionRoutes)
+
 
 app.use((req, res, next) => {
     return next(new NotFoundError)

@@ -1,5 +1,6 @@
 import "./ActivityFeed.css";
 import SummaryStat from "components/SummaryStat/SummaryStat";
+import {Link} from 'react-router-dom'
 export default function ActivityFeed() {
   return (
     <div className="activity-feed">
@@ -12,9 +13,12 @@ export default function ActivityFeed() {
           <button className="logSleepBtn" id="act-btn">
             Log Sleep
           </button>
-          <button className="Record Nutrition" id="act-btn">
-            Record Nutrition
-          </button>
+
+          <Link to="/nutrition/create">
+            <button className="Record Nutrition" id="act-btn">
+              Record Nutrition
+            </button>
+          </Link>
         </div>
       </div>
       <SummaryStat />
