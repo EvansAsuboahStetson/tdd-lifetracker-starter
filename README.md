@@ -22,7 +22,7 @@ Building this application you will accomplish the following:
 - [ ] Employ useEffect and useState hooks to manage application state on the frontend
 
 
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Alt Text](https://github.com/EvansAsuboahStetson/tdd-lifetracker-starter/blob/main/anim.gif)
 ## Application Features
 
 This assignment asks SITE interns to accomplish the following:
