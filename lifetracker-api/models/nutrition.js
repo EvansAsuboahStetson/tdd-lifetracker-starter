@@ -17,7 +17,7 @@ class Nutrition {
   }
 
   static async createNutrition(nutrition) {
-    const requiredFields = ["name", "calories", "category", "image_url"];
+    const requiredFields = ["user_id", "name", "calories", "category", "image_url"];
 
     requiredFields.forEach((field) => {
       if (!nutrition.hasOwnProperty(field)) {
@@ -35,7 +35,7 @@ class Nutrition {
       image_url
     )
     VALUES ($1,$2,$3,$4,$5)
-    RETURNING user_id,name, calories ,category,image_url;
+    RETURNING user_id , name, calories ,category, image_url;
     `,
       [
         nutrition.user_id,
@@ -45,7 +45,7 @@ class Nutrition {
         nutrition.image_url,
       ]
     );
-    const food = result.rows;
+    const food = result.rows[0];
     return Nutrition.makeNutrition(food);
   }
 
@@ -72,7 +72,7 @@ class Nutrition {
 
     const result = await db.query(query, [nutrition_id]);
 
-    const nutrition = result.rows;
+    const nutrition = result.rows[0];
 
     return nutrition;
   }

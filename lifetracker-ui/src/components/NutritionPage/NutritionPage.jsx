@@ -1,6 +1,9 @@
 import "./NutritionPage.css";
 import { useNavigate, Link } from "react-router-dom";
 export default function Nutrition() {
+
+
+
   return (
     <div className="nutrition-page">
       <div className="content">

@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import "./NutritionForm.css"
 
-export default function NutritionForm({ setAppState, appState }) {
+export default function NutritionForm({ setAppState, appState , nutrition_products,setNutrition_products }) {
     console.log(appState)
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
@@ -67,15 +67,16 @@ export default function NutritionForm({ setAppState, appState }) {
     setIsLoading(true);
     setErrors((e) => ({ ...e, form: null }));
     try {
-      const res = await axios.post("http://localhost:3001/nutrition", {
+      const res = await axios.post("http://localhost:3001/nutrition/create/", {
         name: form.name,
         category: form.category,
         calories: form.calories,
         image_url: form.image_url,
-         user_id: appState.user.id,
+        user_id: appState.user.id,
       });
+        
 
-      if (res?.data?.user) {
+      if (res?.data) {
         console.log(res);
         setIsLoading(false);
         navigate("/nutrition");
